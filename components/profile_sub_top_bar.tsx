@@ -1,6 +1,8 @@
-import Image from 'next/image';
-import React from 'react';
-import { BsGear } from 'react-icons/bs';
+import Image from "next/image";
+import React from "react";
+import { BsGear } from "react-icons/bs";
+
+import { createProfile } from "../hooks/profileFunction";
 
 export default function ProfileSubTopBar(props: any) {
   const getIdList = () => {
@@ -15,7 +17,7 @@ export default function ProfileSubTopBar(props: any) {
     <div className="flex flex-row mt-2 border-b-2 w-full items-center justify-center">
       <Image
         className="rounded-full h-24 w-24 mx-2"
-        src={props.img_url}
+        src={props.imgUrl}
         alt="profile_logo"
         width={30}
         height={30}
@@ -25,17 +27,20 @@ export default function ProfileSubTopBar(props: any) {
         <div className="flex flex-row items-center space-x-2">
           <div className="text-2xl font-semibold">{props.name}</div>
           <BsGear
-            onClick={() => props.is_open_modal(true)}
+            onClick={() => props.isOpenModal(true)}
             className="fill-gray-500 h-7 w-7"
           />
         </div>
         <div>Wallet Address</div>
-        <div className="text-ellipsis overflow-hidden w-44 items-center flex">
+        <div className="text-ellipsis overflow-hidden w-44 items-center flex justify-center">
           <select
             onChange={(event) => {
               props.setActingAccount(props.idList[event.target.value]);
               props.setIsCreatedFnRun(false);
-              props.createProfile;
+              createProfile({
+                api: props.api,
+                actingAccount: props.actingAccount,
+              });
             }}
             className="w-32 items-center flex"
           >

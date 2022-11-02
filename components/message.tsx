@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
 
 export default function Message(props: any) {
   const is_me = props.senderId == props.account_id;

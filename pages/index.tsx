@@ -1,7 +1,8 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { useRouter } from "next/router";
+
 const Home: NextPage = () => {
   const router = useRouter();
   return (
@@ -52,7 +53,7 @@ const Home: NextPage = () => {
         <button
           className="z-10 text-3xl text-white items-center flex justify-center h-20 w-72 bg-[#003AD0] hover:bg-blue-700  py-2 px-4 rounded-full"
           onClick={() => {
-            router.push('home');
+            router.push("home");
           }}
         >
           Connect Wallet

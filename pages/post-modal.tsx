@@ -1,21 +1,35 @@
-import Modal from 'react-modal';
+import { ApiPromise } from "@polkadot/api";
+import { InjectedAccountWithMeta } from "@polkadot/extension-inject/types";
+import { Dispatch } from "react";
+import Modal from "react-modal";
 
-export default function PostModal(props: any) {
+import { releasePost } from "../hooks/postFunction";
+
+type Props = {
+  isOpen: boolean;
+  afterOpenFn: Dispatch<React.SetStateAction<boolean>>;
+  api: ApiPromise;
+  actingAccount: InjectedAccountWithMeta;
+};
+
+export default function PostModal(props: Props) {
   const submit = async (event: any) => {
     event.preventDefault();
-    await props.releasePost(
-      event.target.img_url.value,
-      event.target.description.value
-    );
+    await releasePost({
+      api: props.api,
+      actingAccount: props.actingAccount,
+      description: event.target.description.value,
+      imgUrl: event.target.img_url.value,
+    });
     props.afterOpenFn(false);
     alert(
-      `img_url: ${event.target.img_url.value}\ndescription: ${event.target.description.value}`
+      `img_url: ${event.target.img_url.value}\ndescription: ${event.target.description.value}`,
     );
   };
   return (
     <Modal
       className="flex items-center justify-center h-screen"
-      isOpen={props.is_open}
+      isOpen={props.isOpen}
     >
       <form
         onSubmit={submit}

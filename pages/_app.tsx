@@ -1,6 +1,7 @@
-import '../styles/globals.css';
-import type { AppProps } from 'next/app';
-import { useEffect, useState } from 'react';
+import type { AppProps } from "next/app";
+import { useEffect, useState } from "react";
+
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [showChild, setShowChild] = useState(false);
@@ -12,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return null;
   }
 
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return <></>;
   } else {
     return <Component {...pageProps} />;

@@ -1,11 +1,18 @@
-import Image from 'next/image';
-import React from 'react';
-import { AiFillHeart } from 'react-icons/ai';
+import Image from "next/image";
+import React from "react";
+import { AiFillHeart } from "react-icons/ai";
+
+import { addLikes } from "../hooks/postFunction";
+import { follow } from "../hooks/profileFunction";
 
 export default function Post(props: any) {
-  const follow = async () => {
-    if (confirm('Would you like to follow this account?')) {
-      await props.follow(props.userId);
+  const implementFollow = async () => {
+    if (confirm("Would you like to follow this account?")) {
+      await follow({
+        api: props.api,
+        actingAccount: props.actingAccount,
+        followedId: props.userId,
+      });
     }
   };
   return (
@@ -13,7 +20,7 @@ export default function Post(props: any) {
       <div className="flex flex-row justify-center">
         <div className="">
           <Image
-            onClick={follow}
+            onClick={implementFollow}
             className="rounded-full h-12 w-12 mx-2"
             src={props.user_img_url}
             alt="profile_logo"
@@ -40,7 +47,11 @@ export default function Post(props: any) {
             <p className="text-xl mr-1">{props.num_of_likes}</p>
             <AiFillHeart
               onClick={() => {
-                props.addLikes(props.postId);
+                addLikes({
+                  api: props.api,
+                  actingAccount: props.actingAccount,
+                  postId: props.postId,
+                });
               }}
               className="fill-[#FD3509] h-[30px] w-[30px]"
             />

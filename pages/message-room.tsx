@@ -1,8 +1,10 @@
-import Image from 'next/image';
-import React from 'react';
-import { BsArrowLeft } from 'react-icons/bs';
-import { BiSend } from 'react-icons/bi';
-import Message from '../components/message';
+import Image from "next/image";
+import React from "react";
+import { BiSend } from "react-icons/bi";
+import { BsArrowLeft } from "react-icons/bs";
+
+import Message from "../components/message";
+import { sendMessage } from "../hooks/messageFunction";
 
 export default function MessageRoom(props: any) {
   const makeMessageUI = () => {
@@ -24,16 +26,22 @@ export default function MessageRoom(props: any) {
               message={messageList[i].message}
               senderId={messageList[i].senderId}
             />
-          </div>
+          </div>,
         );
       }
     }
     return messageUIList;
   };
+
   const submit = async (event: any) => {
     event.preventDefault();
-    await props.sendMessage(event.target.message.value, props.messageListId);
-    event.target.message.value = '';
+    await sendMessage({
+      api: props.api,
+      actingAccount: props.actingAccount,
+      message: event.target.message.value,
+      id: props.messageListId,
+    });
+    event.target.message.value = "";
   };
 
   return (

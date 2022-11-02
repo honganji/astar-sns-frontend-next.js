@@ -1,23 +1,44 @@
-import React from 'react';
-import Modal from 'react-modal';
+import { ApiPromise } from "@polkadot/api";
+import { InjectedAccountWithMeta } from "@polkadot/extension-inject/types";
+import React, { Dispatch } from "react";
+import Modal from "react-modal";
 
-export default function ProfileSettingModal(props: any) {
+import { getProfileForProfile, setProfileInfo } from "../hooks/profileFunction";
+
+type Props = {
+  isOpen: boolean;
+  afterOpenFn: Dispatch<React.SetStateAction<boolean>>;
+  api: ApiPromise | undefined;
+  userId: string | undefined;
+  setImgUrl: Dispatch<React.SetStateAction<string>>;
+  setName: Dispatch<React.SetStateAction<string>>;
+  actingAccount: InjectedAccountWithMeta | undefined;
+};
+
+export default function ProfileSettingModal(props: Props) {
   const submit = async (event: any) => {
     event.preventDefault();
-    await props.setProfileInfo(
-      event.target.img_url.value,
-      event.target.name.value
-    );
-    await props.getProfile;
+    await setProfileInfo({
+      api: props.api!,
+      actingAccount: props.actingAccount!,
+      name: event.target.name.value,
+      imgUrl: event.target.img_url.value,
+    });
+    await getProfileForProfile({
+      api: props.api,
+      userId: props.actingAccount?.address,
+      setImgUrl: props.setImgUrl,
+      setName: props.setName,
+    });
     props.afterOpenFn(false);
     alert(
-      `img_url: ${event.target.img_url.value}\nname: ${event.target.name.value}`
+      `img_url: ${event.target.img_url.value}\nname: ${event.target.name.value}`,
     );
   };
   return (
     <Modal
       className="flex items-center justify-center h-screen"
-      isOpen={props.is_open}
+      isOpen={props.isOpen}
     >
       <form
         onSubmit={submit}

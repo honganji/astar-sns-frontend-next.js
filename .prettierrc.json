@@ -1,5 +1,11 @@
 {
-  "singleQuote": true,
+  "trailingComma": "all",
   "tabWidth": 2,
-  "semi": true
+  "semi": true,
+  "singleQuote": false,
+  "importOrder": ["^[./]", "^@/(.*)$"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderGroupNamespaceSpecifiers": true,
+  "importOrderCaseInsensitive": true
 }
