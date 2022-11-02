@@ -1,7 +1,6 @@
 import { ApiPromise } from "@polkadot/api";
 import { ContractPromise } from "@polkadot/api-contract";
 import { InjectedAccountWithMeta } from "@polkadot/extension-inject/types";
-import { Dispatch } from "react";
 
 import abi from "../metadata.json";
 
