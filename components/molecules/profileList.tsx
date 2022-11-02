@@ -1,12 +1,11 @@
 import { ApiPromise } from "@polkadot/api";
 import { InjectedAccountWithMeta } from "@polkadot/extension-inject/types";
-import React, { Dispatch } from "react";
+import type { Dispatch, FC } from "react";
 
-import { BiggerProfileIcon } from "./atoms/biggerProfileIcon";
-import { ProfileList } from "./molecules/profileList";
+import { ProfileTitle } from "../atoms/profileTitle";
+import { WalletAddressSelection } from "../atoms/walletAddressSelection";
 
 type Props = {
-  imgUrl: string;
   name: string;
   isOpenModal: Dispatch<React.SetStateAction<boolean>>;
   setActingAccount: Dispatch<
@@ -20,21 +19,18 @@ type Props = {
   followerList: Array<string>;
 };
 
-export default function ProfileSubTopBar(props: Props) {
+export const ProfileList: FC<Props> = (props: Props) => {
   return (
-    <div className="flex flex-row mt-2 border-b-2 w-full items-center justify-center">
-      <BiggerProfileIcon imgUrl={props.imgUrl} />
-      <ProfileList
-        name={props.name}
+    <div className="flex items-center flex-col">
+      <ProfileTitle name={props.name} isOpenModal={props.isOpenModal} />
+      <WalletAddressSelection
         isOpenModal={props.isOpenModal}
+        name={props.name}
         setActingAccount={props.setActingAccount}
         idList={props.idList}
         setIsCreatedFnRun={props.setIsCreatedFnRun}
-        api={props.api}
-        actingAccount={props.actingAccount}
-        followingList={props.followingList}
-        followerList={props.followerList}
       />
+      <div className="">{`${props.followingList.length} following ${props.followerList.length} follower `}</div>
     </div>
   );
-}
+};

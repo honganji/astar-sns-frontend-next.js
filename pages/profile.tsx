@@ -2,11 +2,11 @@ import { ApiPromise } from "@polkadot/api";
 import type { InjectedAccountWithMeta } from "@polkadot/extension-inject/types";
 import React, { useEffect, useState } from "react";
 
-import BottomNavigation from "../components/bottom_navigation";
+import BottomNavigation from "../components/bottomNavigation";
 import Post from "../components/post";
 import ProfileSettingModal from "../components/profile_setting_modal";
 import ProfileSubTopBar from "../components/profile_sub_top_bar";
-import TopBar from "../components/top_bar";
+import TopBar from "../components/topBar";
 import { connectToContract } from "../hooks/connect";
 import type { PostType } from "../hooks/postFunction";
 import { getIndividualPost } from "../hooks/postFunction";
@@ -66,11 +66,10 @@ export default function profile(props: any) {
       userId: actingAccount?.address,
       setFollowerList: setFollowerList,
     });
-    console.log(`following list${followingList}`);
     if (isCreatedFnRun) return;
     checkCreatedInfo({
       api: api,
-      userId: actingAccount?.address,
+      userId: actingAccount?.address!,
       setIsCreatedProfile: setIsCreatedProfile,
     });
     if (isCreatedProfile) return;
@@ -103,8 +102,8 @@ export default function profile(props: any) {
           isOpenModal={setShowSettingModal}
           setActingAccount={setActingAccount}
           idList={accountList}
-          api={api}
-          actingAccount={actingAccount}
+          api={api!}
+          actingAccount={actingAccount!}
           setIsCreatedFnRun={setIsCreatedFnRun}
         />
         <div className="flex-1 overflow-scroll">

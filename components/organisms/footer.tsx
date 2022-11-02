@@ -1,5 +1,4 @@
-import { useRouter } from "next/router";
-import React, { Dispatch, FC, useState } from "react";
+import React, { Dispatch, FC } from "react";
 import { IconType } from "react-icons";
 import { BiCommentEdit, BiHomeSmile, BiUser } from "react-icons/bi";
 

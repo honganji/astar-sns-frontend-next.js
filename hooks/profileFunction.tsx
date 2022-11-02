@@ -65,7 +65,7 @@ type PropsGSPFM = {
 type PropsF = {
   api: ApiPromise;
   actingAccount: InjectedAccountWithMeta;
-  followedId: number;
+  followedId: string;
 };
 
 // type for setProfileInfo function
@@ -111,8 +111,9 @@ export const checkCreatedInfo = async (props: PropsCCI) => {
 
 // create profile function
 export const createProfile = async (props: PropsCP) => {
+  console.log(props.actingAccount);
   const { web3FromSource } = await import("@polkadot/extension-dapp");
-  const contract = new ContractPromise(props.api, abi, contractAddress);
+  const contract = new ContractPromise(props.api!, abi, contractAddress);
   const performingAccount = props.actingAccount;
   const injector = await web3FromSource(performingAccount.meta.source);
   const create_profile = await contract.tx.createProfile(
@@ -228,16 +229,16 @@ export const follow = async (props: PropsF) => {
   const contract = new ContractPromise(props.api, abi, contractAddress);
   const performingAccount = props.actingAccount;
   const injector = await web3FromSource(performingAccount!.meta.source);
-  const add_likes = await contract.tx.follow(
+  const follow = await contract.tx.follow(
     {
       value: 0,
-      gasLimit: 100000000000,
+      gasLimit: 200000000000,
     },
     props.actingAccount!.address,
     props.followedId,
   );
   if (injector !== undefined) {
-    add_likes.signAndSend(
+    follow.signAndSend(
       performingAccount!.address,
       { signer: injector.signer },
       (result) => {},
@@ -280,8 +281,8 @@ export const getFollowingList = async (props: PropsGFIL) => {
     props.userId,
   );
   if (output !== undefined && output !== null) {
-    console.log(output.toHuman());
     props.setFollowingList(output.toHuman());
+    console.log(output.toHuman());
   }
   return;
 };
@@ -298,7 +299,6 @@ export const getFollowerList = async (props: PropsGFEL) => {
     props.userId,
   );
   if (output !== undefined && output !== null) {
-    console.log(output.toHuman());
     props.setFollowerList(output.toHuman());
   }
   return;

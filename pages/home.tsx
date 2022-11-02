@@ -1,11 +1,12 @@
 import { ApiPromise } from "@polkadot/api";
 import type { InjectedAccountWithMeta } from "@polkadot/extension-inject/types";
 import React, { useEffect, useState } from "react";
-import { BsPlusLg } from "react-icons/bs";
 
-import BottomNavigation from "../components/bottom_navigation";
+import { PostButton } from "../components/atoms/postButton";
+import BottomNavigation from "../components/bottomNavigation";
 import Post from "../components/post";
-import TopBar from "../components/top_bar";
+import PostModal from "../components/postModal";
+import TopBar from "../components/topBar";
 import { connectToContract } from "../hooks/connect";
 import type { PostType } from "../hooks/postFunction";
 import { getGeneralPost } from "../hooks/postFunction";
@@ -14,7 +15,6 @@ import {
   createProfile,
   getProfileForHome,
 } from "../hooks/profileFunction";
-import PostModal from "./post-modal";
 
 export default function home() {
   const [api, setApi] = useState<ApiPromise>();
@@ -28,27 +28,6 @@ export default function home() {
   const [accountList, setAccountList] = useState<InjectedAccountWithMeta[]>([]);
   const [actingAccount, setActingAccount] = useState<InjectedAccountWithMeta>();
   const [generalPostList, setGeneralPostList] = useState<PostType[]>([]);
-
-  const getPostList = () => {
-    let postList: Array<any> = new Array();
-    for (var i = 0; i < generalPostList.length; i++) {
-      postList.push(
-        <Post
-          name={generalPostList[i].name}
-          time={generalPostList[i].createdTime}
-          description={generalPostList[i].description}
-          num_of_likes={generalPostList[i].numOfLikes}
-          user_img_url={generalPostList[i].userImgUrl}
-          post_img_url={generalPostList[i].imgUrl}
-          userId={generalPostList[i].userId}
-          postId={generalPostList[i].postId}
-          actingAccount={actingAccount}
-          api={api}
-        />,
-      );
-    }
-    return postList.reverse();
-  };
 
   useEffect(() => {
     connectToContract({
@@ -93,18 +72,26 @@ export default function home() {
           imgUrl={imgUrl}
           setActingAccount={setActingAccount}
         />
-        <div className="flex-1 overflow-scroll">{getPostList()}</div>
+        <div className="flex-1 overflow-scroll">
+          {generalPostList.map((post) => (
+            <Post
+              name={post.name}
+              time={post.createdTime}
+              description={post.description}
+              num_of_likes={post.numOfLikes}
+              user_img_url={post.userImgUrl}
+              post_img_url={post.imgUrl}
+              userId={post.userId}
+              postId={post.postId}
+              actingAccount={actingAccount}
+              api={api}
+            />
+          ))}
+        </div>
         <div className="w-full">
           <BottomNavigation api={api} />
         </div>
-        <button
-          onClick={() => {
-            setShowNewPostModal(true);
-          }}
-          className="rounded-full h-14 w-14 bg-[#003AD0] absolute bottom-24 right-1/3 mr-5 items-center flex justify-center"
-        >
-          <BsPlusLg className="h-9 w-9" />
-        </button>
+        <PostButton setShowNewPostModal={setShowNewPostModal} />
       </main>
     </div>
   );

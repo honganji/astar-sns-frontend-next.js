@@ -2,12 +2,12 @@ import { ApiPromise } from "@polkadot/api";
 import type { InjectedAccountWithMeta } from "@polkadot/extension-inject/types";
 import React, { useEffect, useState } from "react";
 
-import BottomNavigation from "../components/bottom_navigation";
+import BottomNavigation from "../components/bottomNavigation";
 import MessageMember from "../components/message_member";
-import TopBar from "../components/top_bar";
+import MessageRoom from "../components/messageRoom";
+import TopBar from "../components/topBar";
 import { connectToContract } from "../hooks/connect";
 import { getLastMessage, getMessageList } from "../hooks/messageFunction";
-import type { Message } from "../hooks/messageFunction";
 import {
   checkCreatedInfo,
   createProfile,
@@ -15,7 +15,6 @@ import {
   getSimpleProfileForMessage,
 } from "../hooks/profileFunction";
 import type { ProfileType } from "../hooks/profileFunction";
-import MessageRoom from "./message-room";
 
 export default function message() {
   // variable related to contract
@@ -32,14 +31,11 @@ export default function message() {
   const [userName, setUserName] = useState("");
   const [userImgUrl, setUserImgUrl] = useState("");
   const [myImgUrl, setMyImgUrl] = useState("");
-  const [messageListId, setMessageListId] = useState([]);
+  const [messageListId, setMessageListId] = useState<string>("");
   const [messageMemberList, setMessageMemberList] = useState([]);
   const [myUserId, setMyUserId] = useState("");
   const [isSetup, setIsSetup] = useState(false);
   const [profile, setProfile] = useState<ProfileType>();
-  const [individualMessageList, setIndividualMessageList] = useState<
-    Array<Message>
-  >([]);
 
   useEffect(() => {
     //connect to contract
@@ -96,12 +92,6 @@ export default function message() {
         api: api,
         id: idList![i],
       });
-      // await getMessageList({
-      //   api: api,
-      //   id: idList![i],
-      //   setIndividualMessageList: setIndividualMessageList,
-      // });
-      console.log(`messageList: ${individualMessageList}`);
       if (idList !== null) {
         lastMessage = await getLastMessage({ api: api, id: idList![i] });
       }
@@ -117,7 +107,6 @@ export default function message() {
           messageListId={idList[i]}
           setMessageListId={setMessageListId}
           setMessageList={setMessageList}
-          setIndividualMessageList={setIndividualMessageList}
           messageList={messageList}
           getMessageList={getMessageList}
           setMyUserId={setMyUserId}
@@ -153,10 +142,10 @@ export default function message() {
       userImgUrl={userImgUrl}
       myImgUrl={myImgUrl}
       myUserId={myUserId}
-      api={api}
-      actingAccount={actingAccount}
-      messageListId={messageListId}
-      messageList={messageList}
+      api={api!}
+      actingAccount={actingAccount!}
+      messageListId={messageListId!}
+      messageList={messageList!}
     />
   );
 }

@@ -1,6 +1,6 @@
 import { ApiPromise, WsProvider } from "@polkadot/api";
 import { InjectedAccountWithMeta } from "@polkadot/extension-inject/types";
-import { Dispatch, useState } from "react";
+import { Dispatch } from "react";
 
 // type for connectToContract function
 type Props = {

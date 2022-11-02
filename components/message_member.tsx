@@ -13,11 +13,6 @@ export default function MessageMember(props: any) {
         props.setUserImgUrl(props.img_url);
         props.setMessageListId(props.messageListId);
         props.setMessageList(props.messageList);
-        // getMessageList({
-        //   api: props.api,
-        //   id: props.myUserId,
-        //   setIndividualMessageList: props.setIndividualMessageList,
-        // });
         props.setMyUserId(props.myUserId);
       }}
     >

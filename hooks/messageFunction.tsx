@@ -6,7 +6,7 @@ import { Dispatch } from "react";
 import abi from "../metadata.json";
 
 // type of meesage in contract
-export type Message = {
+export type MessageType = {
   message: string;
   senderId: string;
   createdTime: string;

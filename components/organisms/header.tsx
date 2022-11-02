@@ -2,7 +2,7 @@
 import type { Dispatch, FC } from "react";
 
 import AppLogo from "../atoms/appLogo";
-import DisconnectButton from "../molecules/disconnectButton";
+import DisconnectButton from "../atoms/disconnectButton";
 import HeaderProfile from "../molecules/headerProfile";
 import type { Id } from "../molecules/headerProfile";
 
