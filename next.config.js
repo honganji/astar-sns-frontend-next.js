@@ -5,8 +5,12 @@ const nextConfig = {
   images: {
     domains: ["images.unsplash.com", "data:image", "plus.unsplash.com"],
   },
-  eslint: {
-    ignoreDuringBuilds: true,
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
   },
 };
 
