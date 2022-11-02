@@ -20,7 +20,7 @@ type Props = {
 export const connectToContract = async (props: Props) => {
   const contractAddress: string = process.env
     .NEXT_PUBLIC_CONTRACT_ADDRESS as string;
-  const blockchainUrl = "ws://127.0.0.1:9944";
+  const blockchainUrl = "wss://shiden.public.blastapi.io";
 
   const extensionSetup = async () => {
     const { web3Accounts, web3Enable } = await import(
