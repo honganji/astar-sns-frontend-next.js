@@ -3,7 +3,6 @@ import React from "react";
 import { AiFillHeart } from "react-icons/ai";
 
 import { addLikes } from "../hooks/postFunction";
-import { follow } from "../hooks/profileFunction";
 import { SmallerProfileIcon } from "./atoms/smallerProfileIcon";
 
 export default function Post(props: any) {

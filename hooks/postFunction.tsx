@@ -58,7 +58,7 @@ export const releasePost = async (props: PropsRP) => {
   const release_post = await contract.tx.releasePost(
     {
       value: 0,
-      gasLimit: 35000000000,
+      gasLimit: 31518000000,
     },
     props.actingAccount?.address,
     props.description,
@@ -91,11 +91,7 @@ export const getGeneralPost = async (props: PropsGGP) => {
     1,
   );
   if (output !== undefined && output !== null) {
-    if (output !== undefined && output !== null) {
-      props.setGeneralPostList(
-        output.toHuman() == null ? [] : output.toHuman(),
-      );
-    }
+    props.setGeneralPostList(output.toHuman() == null ? [] : output.toHuman());
   }
 };
 
@@ -108,7 +104,7 @@ export const addLikes = async (props: PropsAL) => {
   const add_likes = await contract.tx.addLikes(
     {
       value: 0,
-      gasLimit: 18850000000,
+      gasLimit: 19687000000,
     },
     props.postId,
   );

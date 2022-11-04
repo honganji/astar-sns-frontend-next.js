@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 
 import BottomNavigation from "../components/bottomNavigation";
 import Post from "../components/post";
-import ProfileSettingModal from "../components/profile_setting_modal";
-import ProfileSubTopBar from "../components/profile_sub_top_bar";
+import ProfileSettingModal from "../components/profileSettingModal";
+import ProfileSubTopBar from "../components/profileSubTopBar";
 import TopBar from "../components/topBar";
 import { connectToContract } from "../hooks/connect";
 import type { PostType } from "../hooks/postFunction";

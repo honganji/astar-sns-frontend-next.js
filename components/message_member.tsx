@@ -1,8 +1,6 @@
 import Image from "next/image";
 import React from "react";
 
-import { getMessageList } from "../hooks/messageFunction";
-
 export default function MessageMember(props: any) {
   return (
     <div
