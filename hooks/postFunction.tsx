@@ -91,7 +91,9 @@ export const getGeneralPost = async (props: PropsGGP) => {
     1,
   );
   if (output !== undefined && output !== null) {
-    props.setGeneralPostList(output.toHuman() == null ? [] : output.toHuman());
+    props.setGeneralPostList(
+      output.toHuman() == null ? [] : output.toHuman().reverse(),
+    );
   }
 };
 
@@ -132,7 +134,7 @@ export const getIndividualPost = async (props: PropsGIP) => {
     );
   if (output !== undefined && output !== null) {
     props.setIndividualPostList(
-      output.toHuman() == null ? [] : output.toHuman(),
+      output.toHuman() == null ? [] : output.toHuman().reverse(),
     );
   }
 };

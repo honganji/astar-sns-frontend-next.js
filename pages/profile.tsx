@@ -8,6 +8,7 @@ import ProfileSettingModal from "../components/profileSettingModal";
 import ProfileSubTopBar from "../components/profileSubTopBar";
 import TopBar from "../components/topBar";
 import { connectToContract } from "../hooks/connect";
+import { balenceOf } from "../hooks/FT";
 import type { PostType } from "../hooks/postFunction";
 import { getIndividualPost } from "../hooks/postFunction";
 import {
@@ -32,6 +33,7 @@ export default function profile(props: any) {
   const [actingAccount, setActingAccount] = useState<InjectedAccountWithMeta>();
   const [followingList, setFollowingList] = useState<Array<string>>([]);
   const [followerList, setFollowerList] = useState<Array<string>>([]);
+  const [balance, setBalance] = useState<string>("0");
 
   useEffect(() => {
     connectToContract({
@@ -66,6 +68,11 @@ export default function profile(props: any) {
       userId: actingAccount?.address,
       setFollowerList: setFollowerList,
     });
+    balenceOf({
+      api: api,
+      actingAccount: actingAccount!,
+      setBalance: setBalance,
+    });
     if (isCreatedFnRun) return;
     checkCreatedInfo({
       api: api,
@@ -93,6 +100,7 @@ export default function profile(props: any) {
           idList={accountList}
           imgUrl={imgUrl}
           setActingAccount={setActingAccount}
+          balance={balance}
         />
         <ProfileSubTopBar
           imgUrl={imgUrl}

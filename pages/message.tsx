@@ -7,6 +7,7 @@ import MessageMember from "../components/message_member";
 import MessageRoom from "../components/messageRoom";
 import TopBar from "../components/topBar";
 import { connectToContract } from "../hooks/connect";
+import { balenceOf } from "../hooks/FT";
 import { getLastMessage, getMessageList } from "../hooks/messageFunction";
 import {
   checkCreatedInfo,
@@ -36,6 +37,7 @@ export default function message() {
   const [myUserId, setMyUserId] = useState("");
   const [isSetup, setIsSetup] = useState(false);
   const [profile, setProfile] = useState<ProfileType>();
+  const [balance, setBalance] = useState<string>("0");
 
   useEffect(() => {
     //connect to contract
@@ -62,6 +64,12 @@ export default function message() {
     });
     // create message member list UI
     createMessageMemberList();
+
+    balenceOf({
+      api: api,
+      actingAccount: actingAccount!,
+      setBalance: setBalance,
+    });
 
     // check if already created profile in frontend
     if (isCreatedFnRun) return;
@@ -126,6 +134,7 @@ export default function message() {
           idList={accountList}
           imgUrl={imgUrl}
           setActingAccount={setActingAccount}
+          balance={balance}
         />
         <div className="flex-1 overflow-scroll w-full mt-1">
           {messageMemberList}

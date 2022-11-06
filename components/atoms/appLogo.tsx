@@ -3,9 +3,9 @@ import type { FC } from "react";
 
 const AppLogo: FC = () => {
   return (
-    <div className="flex-row flex items-center ml-[30px]">
+    <div className="flex-row flex items-center ml-[5px]">
       <Image
-        className="w-[70px] h-[70px]"
+        className="w-[60px] h-[60px]"
         src="/unchain_logo.png"
         alt="unchain_logo"
         width={30}
@@ -19,7 +19,7 @@ const AppLogo: FC = () => {
         height={30}
       />
       <Image
-        className="w-[70px] h-[70px]"
+        className="w-[60px] h-[60px]"
         src="/Astar_logo.png"
         alt="astar_logo"
         width={30}

@@ -12,6 +12,7 @@ export default function TopBar(props: any) {
       imgUrl={props.imgUrl}
       idList={props.idList}
       setActingAccount={props.setActingAccount}
+      balance={props.balance}
     />
   );
 }

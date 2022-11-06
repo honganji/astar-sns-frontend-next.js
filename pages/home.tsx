@@ -8,6 +8,7 @@ import Post from "../components/post";
 import PostModal from "../components/postModal";
 import TopBar from "../components/topBar";
 import { connectToContract } from "../hooks/connect";
+import { balenceOf, distributeReferLikes, transfer } from "../hooks/FT";
 import type { PostType } from "../hooks/postFunction";
 import { getGeneralPost } from "../hooks/postFunction";
 import {
@@ -23,11 +24,13 @@ export default function home() {
   const [isCreatedFnRun, setIsCreatedFnRun] = useState(false);
   const [showNewPostModal, setShowNewPostModal] = useState(false);
   const [isSetup, setIsSetup] = useState(false);
+  const [isDistributed, setIsDistributed] = useState(false);
 
   const [imgUrl, setImgUrl] = useState("");
   const [accountList, setAccountList] = useState<InjectedAccountWithMeta[]>([]);
   const [actingAccount, setActingAccount] = useState<InjectedAccountWithMeta>();
   const [generalPostList, setGeneralPostList] = useState<PostType[]>([]);
+  const [balance, setBalance] = useState<string>("0");
 
   useEffect(() => {
     connectToContract({
@@ -46,7 +49,18 @@ export default function home() {
       userId: actingAccount?.address!,
       setImgUrl: setImgUrl,
     });
+    balenceOf({
+      api: api,
+      actingAccount: actingAccount!,
+      setBalance: setBalance,
+    });
     getGeneralPost({ api: api!, setGeneralPostList: setGeneralPostList });
+    if (isDistributed) return;
+    distributeReferLikes({
+      api: api,
+      actingAccount: actingAccount!,
+    });
+    setIsDistributed(true);
     if (isCreatedFnRun) return;
     checkCreatedInfo({
       api: api,
@@ -71,6 +85,7 @@ export default function home() {
           idList={accountList}
           imgUrl={imgUrl}
           setActingAccount={setActingAccount}
+          balance={balance}
         />
         <div className="flex-1 overflow-scroll">
           {generalPostList.map((post) => (
