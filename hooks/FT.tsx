@@ -51,7 +51,6 @@ export const transfer = async (props: PropsTF) => {
       value: 0,
       gasLimit: 31518000000,
     },
-    props.actingAccount?.address,
     props.amount,
   );
   if (injector !== undefined) {

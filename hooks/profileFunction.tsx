@@ -116,13 +116,10 @@ export const createProfile = async (props: PropsCP) => {
   const contract = new ContractPromise(props.api!, abi, contractAddress);
   const performingAccount = props.actingAccount;
   const injector = await web3FromSource(performingAccount.meta.source);
-  const create_profile = await contract.tx.createProfile(
-    {
-      value: 0,
-      gasLimit: 18850000000,
-    },
-    props.actingAccount.address,
-  );
+  const create_profile = await contract.tx.createProfile({
+    value: 0,
+    gasLimit: 18850000000,
+  });
   if (injector !== undefined) {
     create_profile.signAndSend(
       performingAccount.address,
@@ -234,7 +231,6 @@ export const follow = async (props: PropsF) => {
       value: 0,
       gasLimit: 200000000000,
     },
-    props.actingAccount!.address,
     props.followedId,
   );
   if (injector !== undefined) {
@@ -254,9 +250,8 @@ export const setProfileInfo = async (props: PropSPI) => {
   const set_profile_info = await contract.tx.setProfileInfo(
     {
       value: 0,
-      gasLimit: 187500000000,
+      gasLimit: 110000000000,
     },
-    props.actingAccount?.address,
     props.name,
     props.imgUrl,
   );

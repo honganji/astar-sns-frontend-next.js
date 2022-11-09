@@ -48,7 +48,6 @@ export const sendMessage = async (props: PropsSM) => {
     },
     props.message,
     props.id,
-    props.actingAccount?.address,
     [date.getMonth() + 1, date.getDate()].join("-") +
       " " +
       [

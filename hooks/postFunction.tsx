@@ -60,7 +60,6 @@ export const releasePost = async (props: PropsRP) => {
       value: 0,
       gasLimit: 31518000000,
     },
-    props.actingAccount?.address,
     props.description,
     [date.getFullYear(), date.getMonth() + 1, date.getDate()].join("-") +
       " " +

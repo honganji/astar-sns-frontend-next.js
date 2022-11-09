@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x9441edb6ec72e713277993367427c3f7194441e06bde9dcff3add68ba955e855",
+    "hash": "0xd930cb93ee892a6cba9f18465f1b4b2aed006cc9a99889ec78624d18bf29bed2",
     "language": "ink! 3.3.0",
     "compiler": "rustc 1.65.0-nightly"
   },
@@ -29,15 +29,6 @@
       "messages": [
         {
           "args": [
-            {
-              "label": "account_id",
-              "type": {
-                "displayName": [
-                  "AccountId"
-                ],
-                "type": 1
-              }
-            },
             {
               "label": "description",
               "type": {
@@ -170,15 +161,6 @@
               }
             },
             {
-              "label": "sender_id",
-              "type": {
-                "displayName": [
-                  "AccountId"
-                ],
-                "type": 1
-              }
-            },
-            {
               "label": "created_time",
               "type": {
                 "displayName": [
@@ -253,17 +235,7 @@
           "selector": "0x0d83c0a8"
         },
         {
-          "args": [
-            {
-              "label": "account_id",
-              "type": {
-                "displayName": [
-                  "AccountId"
-                ],
-                "type": 1
-              }
-            }
-          ],
+          "args": [],
           "docs": [],
           "label": "create_profile",
           "mutates": true,
@@ -273,15 +245,6 @@
         },
         {
           "args": [
-            {
-              "label": "account_id",
-              "type": {
-                "displayName": [
-                  "AccountId"
-                ],
-                "type": 1
-              }
-            },
             {
               "label": "name",
               "type": {
@@ -310,15 +273,6 @@
         },
         {
           "args": [
-            {
-              "label": "following_account_id",
-              "type": {
-                "displayName": [
-                  "AccountId"
-                ],
-                "type": 1
-              }
-            },
             {
               "label": "followed_account_id",
               "type": {
@@ -482,15 +436,6 @@
         },
         {
           "args": [
-            {
-              "label": "from_id",
-              "type": {
-                "displayName": [
-                  "AccountId"
-                ],
-                "type": 1
-              }
-            },
             {
               "label": "to_id",
               "type": {
