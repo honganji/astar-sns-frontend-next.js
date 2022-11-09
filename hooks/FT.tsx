@@ -68,13 +68,10 @@ export const distributeReferLikes = async (props: PropsDRL) => {
   const performingAccount = props.actingAccount;
   const injector = await web3FromSource(performingAccount.meta.source);
   const date = new Date();
-  const transfer = await contract.tx.distributeReferLikes(
-    {
-      value: 0,
-      gasLimit: 31518000000,
-    },
-    props.actingAccount?.address,
-  );
+  const transfer = await contract.tx.distributeReferLikes({
+    value: 0,
+    gasLimit: 31518000000,
+  });
   if (injector !== undefined) {
     transfer.signAndSend(
       performingAccount.address,

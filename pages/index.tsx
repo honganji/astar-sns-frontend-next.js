@@ -16,9 +16,9 @@ const Home: NextPage = () => {
       <main className="items-center h-screen w-1/3 justify-start flex bg-[#0090CD] flex-col">
         <div className="z-10 h-screen w-1/3 bg-white absolute top-0 left-0"></div>
         <div className="z-10 h-screen w-1/3 bg-white absolute top-0 right-0"></div>
-        <div className="z-0 rounded-full h-[360px] w-[360px] bg-[#87D2EC] absolute -top-20 left-[600px]"></div>
-        <div className="z-0 rounded-full h-[360px] w-[360px] bg-[#87D2EC] absolute top-1/4 right-[550px]"></div>
-        <div className="z-0 rounded-full h-[360px] w-[360px] bg-[#87D2EC] absolute -bottom-20 left-[600px]"></div>
+        <div className="z-0 rounded-full h-[360px] w-[360px] bg-[#87D2EC] absolute -top-24 left-[340px]"></div>
+        <div className="z-0 rounded-full h-[360px] w-[360px] bg-[#87D2EC] absolute top-1/4 right-[300px]"></div>
+        <div className="z-0 rounded-full h-[360px] w-[360px] bg-[#87D2EC] absolute -bottom-24 left-[330px]"></div>
         <h1 className="z-10 text-[#0009DC] mt-24" style={{ fontSize: 57 }}>
           ASTAR SNS
         </h1>

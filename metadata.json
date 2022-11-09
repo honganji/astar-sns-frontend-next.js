@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0xd930cb93ee892a6cba9f18465f1b4b2aed006cc9a99889ec78624d18bf29bed2",
+    "hash": "0xc402ea208f5be1053eba6282f89156fe965d2659c37c34f614829d5ed03007b8",
     "language": "ink! 3.3.0",
     "compiler": "rustc 1.65.0-nightly"
   },
@@ -491,17 +491,7 @@
           "selector": "0x4f1a05ed"
         },
         {
-          "args": [
-            {
-              "label": "account_id",
-              "type": {
-                "displayName": [
-                  "AccountId"
-                ],
-                "type": 1
-              }
-            }
-          ],
+          "args": [],
           "docs": [],
           "label": "distribute_refer_likes",
           "mutates": true,
